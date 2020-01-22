@@ -1,0 +1,11 @@
+/***********************************************************************
+ *
+ *  Copyright (c) 2017 - 2018 ANTZER TECH CO., LTD.
+ *  All Rights Reserved
+ *
+ ************************************************************************/
+
+// the configured options and settings for faro_can_sdk_demo_sensor
+#define FARO_CAN_SDK_DEMO_SENSOR_VERSION_MAJOR @FARO_CAN_SDK_VERSION_MAJOR@
+#define FARO_CAN_SDK_DEMO_SENSOR_VERSION_MINOR @FARO_CAN_SDK_VERSION_MINOR@
+#define FARO_CAN_SDK_DEMO_SENSOR_VERSION_PATCH @FARO_CAN_SDK_VERSION_PATCH@

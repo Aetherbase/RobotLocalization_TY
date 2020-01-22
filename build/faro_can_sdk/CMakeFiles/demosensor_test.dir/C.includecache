@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/ws/tyros_ws/src/faro_can_sdk/include/faro_can_sdk.h
+stdint.h
+-
+
+/root/ws/tyros_ws/src/faro_can_sdk/include/faro_can_sdk_demo_sensor_config.h
+
+/root/ws/tyros_ws/src/faro_can_sdk/src/faro_can_sdk_demo_sensor.c
+stdio.h
+-
+stdlib.h
+-
+getopt.h
+-
+linux/limits.h
+-
+string.h
+-
+pthread.h
+-
+signal.h
+-
+unistd.h
+-
+faro_can_sdk_demo_sensor_config.h
+/root/ws/tyros_ws/src/faro_can_sdk/src/faro_can_sdk_demo_sensor_config.h
+faro_can_sdk.h
+/root/ws/tyros_ws/src/faro_can_sdk/src/faro_can_sdk.h
+

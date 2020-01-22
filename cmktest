@@ -1,0 +1,116 @@
+#***********************************************************************
+#
+#  Copyright (c) 2017 - 2018 ANTZER TECH CO., LTD.
+#  All Rights Reserved
+#
+#***********************************************************************
+
+cmake_minimum_required(VERSION 2.8)
+
+project (faro_can_sdk)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+set (EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+link_directories(${PROJECT_BINARY_DIR}/lib)
+
+set (FARO_CAN_SDK_DEBUG_DEF "FARO_CAN_SDK_DEBUG=0")
+set (FARO_CAN_SDK_HW_FLOW_CONTROL_DEF "FARO_CAN_SDK_HW_FLOW_CONTROL=0")
+
+# exectuabe version
+set (FARO_CAN_SDK_VERSION_MAJOR 3)
+set (FARO_CAN_SDK_VERSION_MINOR 1)
+set (FARO_CAN_SDK_VERSION_PATCH 16)
+
+#
+# for demo program
+#
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+	"${CMAKE_CURRENT_SOURCE_DIR}/template/faro_can_sdk_demo_config.h.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/faro_can_sdk_demo_config.h"
+)
+
+add_executable(faro_can_sdk_demo src/faro_can_sdk_demo.c)
+target_link_libraries(faro_can_sdk_demo rt pthread faro_can_sdk)
+target_compile_definitions(faro_can_sdk_demo PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+
+#
+# for receive_demo program
+#
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+	"${CMAKE_CURRENT_SOURCE_DIR}/template/faro_can_sdk_demo_config.h.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/faro_can_sdk_demo_config.h"
+)
+
+add_executable(faro_can_sdk_receive_sample src/faro_can_sdk_receive_sample.c)
+target_link_libraries(faro_can_sdk_receive_sample rt pthread faro_can_sdk)
+target_compile_definitions(faro_can_sdk_receive_sample PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+
+#
+# for demo3 program
+#
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+	"${CMAKE_CURRENT_SOURCE_DIR}/template/faro_can_sdk_demo_config.h.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/faro_can_sdk_demo_config.h"
+)
+
+add_executable(faro_can_sdk_demo3 src/faro_can_sdk_demo3.c)
+target_link_libraries(faro_can_sdk_demo3 rt pthread faro_can_sdk)
+target_compile_definitions(faro_can_sdk_demo3 PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+
+#
+# for demo j1708 program
+#
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+	"${CMAKE_CURRENT_SOURCE_DIR}/template/faro_can_sdk_demo_j1708_config.h.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/faro_can_sdk_demo_j1708_config.h"
+)
+
+add_executable(faro_can_sdk_demo_j1708 src/faro_can_sdk_demo_j1708.c)
+target_link_libraries(faro_can_sdk_demo_j1708 rt pthread faro_can_sdk)
+target_compile_definitions(faro_can_sdk_demo_j1708 PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+
+# for demo sensor program
+#
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+	"${CMAKE_CURRENT_SOURCE_DIR}/template/faro_can_sdk_demo_sensor_config.h.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/faro_can_sdk_demo_sensor_config.h"
+)
+
+add_executable(faro_can_sdk_demo_sensor src/faro_can_sdk_demo_sensor.c)
+target_link_libraries(faro_can_sdk_demo_sensor rt pthread faro_can_sdk)
+target_compile_definitions(faro_can_sdk_demo_sensor PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+
+#
+# for faro_can_sdk_test
+#
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+	"${CMAKE_CURRENT_SOURCE_DIR}/template/faro_can_sdk_test_config.h.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/faro_can_sdk_test_config.h"
+)
+
+add_executable(faro_can_sdk_test src/faro_can_sdk_test.c)
+target_link_libraries(faro_can_sdk_test rt pthread faro_can_sdk)
+target_compile_definitions(faro_can_sdk_test PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+
+configure_file (
+	"${CMAKE_CURRENT_SOURCE_DIR}/template/test_imu.h.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/test_imu.h"
+)
+add_executable(test_imu src/test_imu.c)
+target_link_libraries(test_imu rt pthread test_imu)
+target_compile_definitions(test_imu PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+
+
