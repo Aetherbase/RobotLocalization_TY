@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/speed_publish.dir/lib/src/libpcan.c.o"
   "CMakeFiles/speed_publish.dir/src/common.c.o"
   "CMakeFiles/speed_publish.dir/src/receivetest.c.o"
   "speed_publish"

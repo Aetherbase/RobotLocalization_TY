@@ -4,7 +4,7 @@
 # compile C with /usr/sbin/cc
 C_FLAGS =  
 
-C_DEFINES = -DROS_BUILD_SHARED_LIBS=1
+C_DEFINES = -DNO_RT -DROS_BUILD_SHARED_LIBS=1
 
 C_INCLUDES = -I/root/ws/tyros_ws/src/speed_publish/lib -I/root/ws/tyros_ws/src/speed_publish/include 
 

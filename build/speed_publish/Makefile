@@ -182,6 +182,33 @@ speed_publish/fast:
 	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/speed_publish.dir/build.make speed_publish/CMakeFiles/speed_publish.dir/build
 .PHONY : speed_publish/fast
 
+lib/src/libpcan.o: lib/src/libpcan.c.o
+
+.PHONY : lib/src/libpcan.o
+
+# target to build an object file
+lib/src/libpcan.c.o:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/speed_publish.dir/build.make speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.o
+.PHONY : lib/src/libpcan.c.o
+
+lib/src/libpcan.i: lib/src/libpcan.c.i
+
+.PHONY : lib/src/libpcan.i
+
+# target to preprocess a source file
+lib/src/libpcan.c.i:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/speed_publish.dir/build.make speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.i
+.PHONY : lib/src/libpcan.c.i
+
+lib/src/libpcan.s: lib/src/libpcan.c.s
+
+.PHONY : lib/src/libpcan.s
+
+# target to generate assembly for a file
+lib/src/libpcan.c.s:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/speed_publish.dir/build.make speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.s
+.PHONY : lib/src/libpcan.c.s
+
 src/common.o: src/common.c.o
 
 .PHONY : src/common.o
@@ -250,6 +277,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... lib/src/libpcan.o"
+	@echo "... lib/src/libpcan.i"
+	@echo "... lib/src/libpcan.s"
 	@echo "... src/common.o"
 	@echo "... src/common.i"
 	@echo "... src/common.s"

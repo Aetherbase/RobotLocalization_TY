@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/root/ws/tyros_ws/src/speed_publish/lib/src/libpcan.c" "/root/ws/tyros_ws/build/speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.o"
   "/root/ws/tyros_ws/src/speed_publish/src/common.c" "/root/ws/tyros_ws/build/speed_publish/CMakeFiles/speed_publish.dir/src/common.c.o"
   "/root/ws/tyros_ws/src/speed_publish/src/receivetest.c" "/root/ws/tyros_ws/build/speed_publish/CMakeFiles/speed_publish.dir/src/receivetest.c.o"
   )
@@ -11,6 +12,7 @@ set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
+  "NO_RT"
   "ROS_BUILD_SHARED_LIBS=1"
   )
 
