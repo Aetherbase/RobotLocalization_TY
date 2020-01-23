@@ -20,7 +20,7 @@ void sig_handler(int signo)
 	}
 
 }
-
+#ifdef FARO_CAN_SDK_DEBUG
 static int do_scan_port(void)
 {
 	int ret = 0;
@@ -35,7 +35,7 @@ static int do_scan_port(void)
 
 	return ret;
 }
-
+#endif
 inline void try_Assert(int _val, const char* errstr){
 	if(_val!=0){
 		scan_port = 0;
@@ -86,22 +86,22 @@ int main(int argc, char *argv[])
 
 	if(signal(SIGINT, sig_handler) == SIG_ERR)
 		fprintf(stderr, "fail to catch SIGINT\n");
-
-	try_Assert(do_scan_port(),"do_scan_port fail\n");
-	static char* _port=(char*)port_name.c_str();
-
 	
+	static char* _port=(char*)port_name.c_str();
 #ifdef FARO_CAN_SDK_DEBUG
-		fprintf(stdout, "starting do_sensor_test on %s\n", port_name.c_str());
+	try_Assert(do_scan_port(),"do_scan_port fail\n");
+	fprintf(stdout, "starting do_sensor_test on %s\n", port_name.c_str());
 #endif
 	try_Assert(AZ_VC_Init(_port),"sensor initialization failed\n");
 
 	try_Assert(AZ_VC_ModeActive(0),"Calling AZ_VC_ModeActive fail\n");
 
 	
-	
+#ifdef FARO_CAN_SDK_DEBUG
+	ros::Rate loop_rate(100);
+#else
 	ros::Rate loop_rate(1);
-
+#endif
 
 	while(ros::ok()){
 

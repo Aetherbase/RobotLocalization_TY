@@ -4,7 +4,7 @@
 # compile C with /usr/sbin/cc
 C_FLAGS =  
 
-C_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"faro_can_sdk\"
+C_DEFINES = -DFARO_CAN_SDK_DEBUG=1 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"faro_can_sdk\"
 
 C_INCLUDES = -I/root/ws/tyros_ws/src/faro_can_sdk/include -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

@@ -10,7 +10,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 link_directories(${PROJECT_BINARY_DIR}/lib)
 
 set (FARO_CAN_SDK_DEBUG_DEF "FARO_CAN_SDK_DEBUG=1")
-set (FARO_CAN_SDK_HW_FLOW_CONTROL_DEF "FARO_CAN_SDK_HW_FLOW_CONTROL=0")
 
 # exectuabe version
 set (FARO_CAN_SDK_VERSION_MAJOR 3)
@@ -28,7 +27,7 @@ target_compile_definitions(publish_imu PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
 
 add_executable(demosensor_test src/faro_can_sdk_demo_sensor.c)
 target_link_libraries(demosensor_test rt pthread ${PROJECT_SOURCE_DIR}/lib/libfaro_can_sdk.so.3 ${catkin_LIBRARIES})
-#target_compile_definitions(demosensor_test PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
+target_compile_definitions(demosensor_test PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
 
 catkin_package(
 #  INCLUDE_DIRS include
