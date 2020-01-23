@@ -73,7 +73,7 @@ int read_loop()
 
 int main(int argc, char *argv[])
 {
-	ros::init(argc,argv,"speed publish");
+	ros::init(argc,argv,"speed_publish");
     ros::NodeHandle nh;
 
 	const char  *szDevNode = DEFAULT_NODE;
