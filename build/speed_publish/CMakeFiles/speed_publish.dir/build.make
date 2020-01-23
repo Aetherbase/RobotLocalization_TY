@@ -57,31 +57,31 @@ include speed_publish/CMakeFiles/speed_publish.dir/progress.make
 # Include the compile flags for this target's objects.
 include speed_publish/CMakeFiles/speed_publish.dir/flags.make
 
-speed_publish/CMakeFiles/speed_publish.dir/src/receivetest.c.o: speed_publish/CMakeFiles/speed_publish.dir/flags.make
-speed_publish/CMakeFiles/speed_publish.dir/src/receivetest.c.o: /root/ws/tyros_ws/src/speed_publish/src/receivetest.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object speed_publish/CMakeFiles/speed_publish.dir/src/receivetest.c.o"
-	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/speed_publish.dir/src/receivetest.c.o   -c /root/ws/tyros_ws/src/speed_publish/src/receivetest.c
+speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o: speed_publish/CMakeFiles/speed_publish.dir/flags.make
+speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o: /root/ws/tyros_ws/src/speed_publish/src/speed_publish.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o"
+	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o -c /root/ws/tyros_ws/src/speed_publish/src/speed_publish.cpp
 
-speed_publish/CMakeFiles/speed_publish.dir/src/receivetest.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/speed_publish.dir/src/receivetest.c.i"
-	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /root/ws/tyros_ws/src/speed_publish/src/receivetest.c > CMakeFiles/speed_publish.dir/src/receivetest.c.i
+speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/speed_publish.dir/src/speed_publish.cpp.i"
+	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/ws/tyros_ws/src/speed_publish/src/speed_publish.cpp > CMakeFiles/speed_publish.dir/src/speed_publish.cpp.i
 
-speed_publish/CMakeFiles/speed_publish.dir/src/receivetest.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/speed_publish.dir/src/receivetest.c.s"
-	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /root/ws/tyros_ws/src/speed_publish/src/receivetest.c -o CMakeFiles/speed_publish.dir/src/receivetest.c.s
+speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/speed_publish.dir/src/speed_publish.cpp.s"
+	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/ws/tyros_ws/src/speed_publish/src/speed_publish.cpp -o CMakeFiles/speed_publish.dir/src/speed_publish.cpp.s
 
-speed_publish/CMakeFiles/speed_publish.dir/src/common.c.o: speed_publish/CMakeFiles/speed_publish.dir/flags.make
-speed_publish/CMakeFiles/speed_publish.dir/src/common.c.o: /root/ws/tyros_ws/src/speed_publish/src/common.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object speed_publish/CMakeFiles/speed_publish.dir/src/common.c.o"
-	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/speed_publish.dir/src/common.c.o   -c /root/ws/tyros_ws/src/speed_publish/src/common.c
+speed_publish/CMakeFiles/speed_publish.dir/lib/src/common.c.o: speed_publish/CMakeFiles/speed_publish.dir/flags.make
+speed_publish/CMakeFiles/speed_publish.dir/lib/src/common.c.o: /root/ws/tyros_ws/src/speed_publish/lib/src/common.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object speed_publish/CMakeFiles/speed_publish.dir/lib/src/common.c.o"
+	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/speed_publish.dir/lib/src/common.c.o   -c /root/ws/tyros_ws/src/speed_publish/lib/src/common.c
 
-speed_publish/CMakeFiles/speed_publish.dir/src/common.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/speed_publish.dir/src/common.c.i"
-	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /root/ws/tyros_ws/src/speed_publish/src/common.c > CMakeFiles/speed_publish.dir/src/common.c.i
+speed_publish/CMakeFiles/speed_publish.dir/lib/src/common.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/speed_publish.dir/lib/src/common.c.i"
+	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /root/ws/tyros_ws/src/speed_publish/lib/src/common.c > CMakeFiles/speed_publish.dir/lib/src/common.c.i
 
-speed_publish/CMakeFiles/speed_publish.dir/src/common.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/speed_publish.dir/src/common.c.s"
-	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /root/ws/tyros_ws/src/speed_publish/src/common.c -o CMakeFiles/speed_publish.dir/src/common.c.s
+speed_publish/CMakeFiles/speed_publish.dir/lib/src/common.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/speed_publish.dir/lib/src/common.c.s"
+	cd /root/ws/tyros_ws/build/speed_publish && /usr/sbin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /root/ws/tyros_ws/src/speed_publish/lib/src/common.c -o CMakeFiles/speed_publish.dir/lib/src/common.c.s
 
 speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.o: speed_publish/CMakeFiles/speed_publish.dir/flags.make
 speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.o: /root/ws/tyros_ws/src/speed_publish/lib/src/libpcan.c
@@ -98,19 +98,36 @@ speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.s: cmake_force
 
 # Object files for target speed_publish
 speed_publish_OBJECTS = \
-"CMakeFiles/speed_publish.dir/src/receivetest.c.o" \
-"CMakeFiles/speed_publish.dir/src/common.c.o" \
+"CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o" \
+"CMakeFiles/speed_publish.dir/lib/src/common.c.o" \
 "CMakeFiles/speed_publish.dir/lib/src/libpcan.c.o"
 
 # External object files for target speed_publish
 speed_publish_EXTERNAL_OBJECTS =
 
-speed_publish/speed_publish: speed_publish/CMakeFiles/speed_publish.dir/src/receivetest.c.o
-speed_publish/speed_publish: speed_publish/CMakeFiles/speed_publish.dir/src/common.c.o
+speed_publish/speed_publish: speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o
+speed_publish/speed_publish: speed_publish/CMakeFiles/speed_publish.dir/lib/src/common.c.o
 speed_publish/speed_publish: speed_publish/CMakeFiles/speed_publish.dir/lib/src/libpcan.c.o
 speed_publish/speed_publish: speed_publish/CMakeFiles/speed_publish.dir/build.make
+speed_publish/speed_publish: /opt/ros/melodic/lib/libroscpp.so
+speed_publish/speed_publish: /usr/lib/libpthread.so
+speed_publish/speed_publish: /usr/lib64/libboost_chrono.so.1.71.0
+speed_publish/speed_publish: /usr/lib64/libboost_filesystem.so.1.71.0
+speed_publish/speed_publish: /opt/ros/melodic/lib/librosconsole.so
+speed_publish/speed_publish: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+speed_publish/speed_publish: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+speed_publish/speed_publish: /usr/lib/liblog4cxx.so
+speed_publish/speed_publish: /usr/lib64/libboost_regex.so.1.71.0
+speed_publish/speed_publish: /opt/ros/melodic/lib/libxmlrpcpp.so
+speed_publish/speed_publish: /opt/ros/melodic/lib/libroscpp_serialization.so
+speed_publish/speed_publish: /opt/ros/melodic/lib/librostime.so
+speed_publish/speed_publish: /usr/lib64/libboost_date_time.so.1.71.0
+speed_publish/speed_publish: /opt/ros/melodic/lib/libcpp_common.so
+speed_publish/speed_publish: /usr/lib64/libboost_system.so.1.71.0
+speed_publish/speed_publish: /usr/lib64/libboost_thread.so.1.71.0
+speed_publish/speed_publish: /usr/lib/libconsole_bridge.so.0.4
 speed_publish/speed_publish: speed_publish/CMakeFiles/speed_publish.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable speed_publish"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable speed_publish"
 	cd /root/ws/tyros_ws/build/speed_publish && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/speed_publish.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

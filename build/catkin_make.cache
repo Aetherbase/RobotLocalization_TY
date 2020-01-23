@@ -1,2 +1,2 @@
 faro_can_sdk:gps_map_frame:serial:speed_publish
--DCATKIN_WHITELIST_PACKAGES=speed_publish -DCATKIN_DEVEL_PREFIX=/root/ws/tyros_ws/devel -DCMAKE_INSTALL_PREFIX=/root/ws/tyros_ws/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/root/ws/tyros_ws/devel -DCMAKE_INSTALL_PREFIX=/root/ws/tyros_ws/install -G Unix Makefiles

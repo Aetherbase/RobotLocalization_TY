@@ -43,7 +43,7 @@
 #include <errno.h>
 
 #include <libpcan.h>
-
+#define NO_RT
 #include "src/libprivate.h"
 
 #define PROCFILE		"/proc/pcan"
