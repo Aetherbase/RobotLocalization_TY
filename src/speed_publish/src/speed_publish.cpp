@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ros/ros.h>
+#include <std_msgs/Int32.h>
 #include <errno.h>
 #include <signal.h>
 #include <stdlib.h>   // strtoul
@@ -16,6 +17,7 @@
 #endif
 
 HANDLE h;
+const char* SPEED_PUBLISH_TOPIC="speed32";
 const char *current_release;
 __u32 rx_msg_count = 0;
 
@@ -41,14 +43,15 @@ void init()
 	signal(SIGINT, signal_handler);
 }
 
-void print_msg(const TPCANRdMsg &m){
+void print_msg(const TPCANRdMsg &m,int* _ss){
+	_ss=(int*)m.Msg.DATA;
 	for (int i = 0; i < m.Msg.LEN; i++)
 			printf("%02x ", m.Msg.DATA[i]);
 
 	printf("\n");
 };
 
-int read_loop()
+int read_loop(int* _s)
 {
 	TPCANRdMsg m;
 	__u32 status;
@@ -59,7 +62,7 @@ int read_loop()
 	}
 
 	rx_msg_count++;
-	print_msg(m);
+	print_msg(m,_s);
 	if (m.Msg.MSGTYPE & MSGTYPE_STATUS) {
 		status = CAN_Status(h);
 		if ((int)status < 0) {
@@ -75,22 +78,23 @@ int main(int argc, char *argv[])
 {
 	ros::init(argc,argv,"speed_publish");
     ros::NodeHandle nh;
-
+	ros::Publisher SpeedPub = nh.advertise<std_msgs::Int32>(SPEED_PUBLISH_TOPIC, 1000);
+    
 	const char  *szDevNode = DEFAULT_NODE;
 	errno = 0;
-
+	std_msgs::Int32 speed;
 	init();
 	// printf("receivetest: device node=\"%s\"\n", szDevNode);
 	h = LINUX_CAN_Open(szDevNode, O_RDWR);
 	if (!h) {
-			printf("receivetest: can't open %s\n", szDevNode);
-			do_exit(errno);
-			return errno;
+		printf("receivetest: can't open %s\n", szDevNode);
+		do_exit(errno);
+		return errno;
 	}
 	ros::Rate loop_rate(1);
 	while(ros::ok()){
-		errno=read_loop();
-
+		errno=read_loop(&(speed.data));
+		SpeedPub.publish(speed);
         ros::spinOnce();
 	}
     loop_rate.sleep();

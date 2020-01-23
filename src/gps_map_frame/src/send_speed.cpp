@@ -22,27 +22,17 @@ serial::Serial mySerial;
 const int BAUD_RATE = 115200;
 const char* SERIAL_PORT= "/dev/ttyUSB1";
 const char* ROSTOPIC_FOR_PUBLISHER="GPS_read";
+const char* ROSTOPIC_SPEED_SUBSCRIBE="speed32";
 
 inline void CountTime(){
     static uint32_t timerCount = 0;
-    // ubx[6] = (temp >> 24) & 0xFF;  //Byte 0
-    // ubx[7] = (temp >> 16) & 0xFF;  //Byte 1
-    // ubx[8] = (temp >> 8) & 0xFF;  //Byte 2
-    // ubx[9] = temp & 0xFF;  //Byte 3
     *tempCount=timerCount;
     timerCount++;
     };
 
 inline void updateSpeed(const std_msgs::Int32::ConstPtr& speed){
-    
-    //uint32_t vs = speed->data; //unit: m/s * 1000
-    // static unsigned char tmpc[3]={0}; //Not big endian
-    
     *tempSpeed=speed->data;
-    // ubx[14] = (vs >> 24) & 0xFF;  //Byte 0
-    // ubx[15] = (vs >> 16) & 0xFF;  //Byte 1
-    // ubx[16] = (vs >> 8) & 0xFF;  //Byte 2
-    ubx[17] = 0x0B; //data type??
+    ubx[17] = 0x0B; //data type
 };
    
 void checksumRefresh(){
@@ -55,21 +45,11 @@ void checksumRefresh(){
     ubx[19] = CB;//checksum
     };
 
-// void printBuffer(){
-//     std::stringstream forprint;
-//     for(int i=0;i<sizeof(ubx);++i){
-//         forprint<<std::hex<<(int)ubx[i];
-//         forprint<<' ';
-//     }
-//     forprint<<std::endl;
-//     ROS_INFO_STREAM(forprint.str().c_str());
-// };
 
 void write_speed(const std_msgs::Int32::ConstPtr& speed){
     CountTime();
     updateSpeed(speed);
     checksumRefresh();
-    //printBuffer();
     mySerial.write(ubx,sizeof(ubx));
 };
 void parseGPS(const char* inputS, sensor_msgs::NavSatFix& toSend){
@@ -91,7 +71,6 @@ int main(int argc, char** argv){
     ros::init(argc, argv, "speedWrite");
     ros::NodeHandle nh;
     ros::Publisher GPSReadPub = nh.advertise<sensor_msgs::NavSatFix>(ROSTOPIC_FOR_PUBLISHER, 1000);
-    // ros::Publisher GPSReadPub = nh.advertise<std_msgs::String>(ROSTOPIC_FOR_PUBLISHER, 1000);
     sensor_msgs::NavSatFix GpsSend;
 
     try

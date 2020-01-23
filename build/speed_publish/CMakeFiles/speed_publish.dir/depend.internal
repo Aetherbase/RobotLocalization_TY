@@ -30,6 +30,7 @@ speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o
  /opt/ros/melodic/include/ros/message.h
  /opt/ros/melodic/include/ros/message_event.h
  /opt/ros/melodic/include/ros/message_forward.h
+ /opt/ros/melodic/include/ros/message_operations.h
  /opt/ros/melodic/include/ros/message_traits.h
  /opt/ros/melodic/include/ros/names.h
  /opt/ros/melodic/include/ros/node_handle.h
@@ -67,6 +68,7 @@ speed_publish/CMakeFiles/speed_publish.dir/src/speed_publish.cpp.o
  /opt/ros/melodic/include/ros/wall_timer.h
  /opt/ros/melodic/include/ros/wall_timer_options.h
  /opt/ros/melodic/include/rosconsole/macros_generated.h
+ /opt/ros/melodic/include/std_msgs/Int32.h
  /opt/ros/melodic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/melodic/include/xmlrpcpp/XmlRpcValue.h
  /root/ws/tyros_ws/src/speed_publish/include/pcan.h

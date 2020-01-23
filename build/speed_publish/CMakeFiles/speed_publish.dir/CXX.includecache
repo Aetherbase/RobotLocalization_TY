@@ -216,6 +216,10 @@ cstddef
 memory
 -
 
+/opt/ros/melodic/include/ros/message_operations.h
+ostream
+-
+
 /opt/ros/melodic/include/ros/message_traits.h
 message_forward.h
 /opt/ros/melodic/include/ros/message_forward.h
@@ -648,6 +652,22 @@ ros/forwards.h
 
 /opt/ros/melodic/include/rosconsole/macros_generated.h
 
+/opt/ros/melodic/include/std_msgs/Int32.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /opt/ros/melodic/include/xmlrpcpp/XmlRpcDecl.h
 ros/macros.h
 -
@@ -682,6 +702,8 @@ pcan.h
 stdio.h
 -
 ros/ros.h
+-
+std_msgs/Int32.h
 -
 errno.h
 -
