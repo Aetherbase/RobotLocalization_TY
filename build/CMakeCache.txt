@@ -34,7 +34,7 @@ CATKIN_SKIP_TESTING:BOOL=OFF
 CATKIN_SYMLINK_INSTALL:BOOL=OFF
 
 //List of ';' separated packages to build
-CATKIN_WHITELIST_PACKAGES:STRING=faro_can_sdk
+CATKIN_WHITELIST_PACKAGES:STRING=speed_publish
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/sbin/addr2line
@@ -365,6 +365,12 @@ serial_LIB_DEPENDS:STATIC=general;rt;general;pthread;
 
 //Value Computed by CMake
 serial_SOURCE_DIR:STATIC=/root/ws/tyros_ws/src/serial
+
+//Value Computed by CMake
+speed_publish_BINARY_DIR:STATIC=/root/ws/tyros_ws/build/speed_publish
+
+//Value Computed by CMake
+speed_publish_SOURCE_DIR:STATIC=/root/ws/tyros_ws/src/speed_publish
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/melodic/share/std_msgs/cmake

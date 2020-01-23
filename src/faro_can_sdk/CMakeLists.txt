@@ -23,6 +23,8 @@ configure_file (
 
 add_executable(publish_imu src/publish_imu.cpp)
 target_link_libraries(publish_imu rt pthread ${PROJECT_SOURCE_DIR}/lib/libfaro_can_sdk.so.3 ${catkin_LIBRARIES})
+
+### comment below to enable release mode and disable debug mode 
 target_compile_definitions(publish_imu PRIVATE ${FARO_CAN_SDK_DEBUG_DEF})
 
 add_executable(demosensor_test src/faro_can_sdk_demo_sensor.c)

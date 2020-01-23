@@ -1,0 +1,8 @@
+prefix=/root/ws/tyros_ws/install
+
+Name: speed_publish
+Description: Description of speed_publish
+Version: 0.0.0
+Cflags: -I/root/ws/tyros_ws/install/include
+Libs: -L/root/ws/tyros_ws/install/lib 
+Requires: 

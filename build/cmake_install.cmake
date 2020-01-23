@@ -130,7 +130,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/root/ws/tyros_ws/build/faro_can_sdk/cmake_install.cmake")
+  include("/root/ws/tyros_ws/build/speed_publish/cmake_install.cmake")
 
 endif()
 

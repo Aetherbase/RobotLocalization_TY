@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/ws/tyros_ws/src/speed_publish/include/pcan.h
+linux/types.h
+-
+linux/ioctl.h
+-
+
+/root/ws/tyros_ws/src/speed_publish/lib/libpcan.h
+pcan.h
+-
+
+/root/ws/tyros_ws/src/speed_publish/src/common.c
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+signal.h
+-
+string.h
+-
+stdlib.h
+-
+common.h
+/root/ws/tyros_ws/src/speed_publish/src/common.h
+
+/root/ws/tyros_ws/src/speed_publish/src/common.h
+libpcan.h
+-
+

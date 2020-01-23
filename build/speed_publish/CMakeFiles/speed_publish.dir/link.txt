@@ -1,0 +1,1 @@
+/usr/sbin/cc   -rdynamic CMakeFiles/speed_publish.dir/src/receivetest.c.o CMakeFiles/speed_publish.dir/src/common.c.o  -o speed_publish 
