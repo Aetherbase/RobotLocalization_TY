@@ -20,9 +20,6 @@ BUILD_SHARED_LIBS:BOOL=ON
 //List of ';' separated packages to exclude
 CATKIN_BLACKLIST_PACKAGES:STRING=
 
-//catkin devel space
-CATKIN_DEVEL_PREFIX:PATH=/root/ws/tyros_ws/devel
-
 //Catkin enable testing
 CATKIN_ENABLE_TESTING:BOOL=ON
 
@@ -34,7 +31,7 @@ CATKIN_SKIP_TESTING:BOOL=OFF
 CATKIN_SYMLINK_INSTALL:BOOL=OFF
 
 //List of ';' separated packages to build
-CATKIN_WHITELIST_PACKAGES:STRING=speed_publish
+CATKIN_WHITELIST_PACKAGES:STRING=
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/sbin/addr2line
@@ -123,7 +120,7 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=OFF
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=/root/ws/tyros_ws/install
+CMAKE_INSTALL_PREFIX:PATH=/usr/local
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/sbin/ld
@@ -325,7 +322,7 @@ gps_map_frame_BINARY_DIR:STATIC=/root/ws/tyros_ws/build/gps_map_frame
 gps_map_frame_SOURCE_DIR:STATIC=/root/ws/tyros_ws/src/gps_map_frame
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/melodic/lib/libxmlrpcpp.so
+lib:FILEPATH=/usr/lib/libpthread.so
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/melodic/share/message_runtime/cmake
@@ -358,7 +355,7 @@ sensor_msgs_DIR:PATH=/opt/ros/melodic/share/sensor_msgs/cmake
 serial_BINARY_DIR:STATIC=/root/ws/tyros_ws/build/serial
 
 //The directory containing a CMake configuration file for serial.
-serial_DIR:PATH=/root/ws/tyros_ws/devel/share/serial/cmake
+serial_DIR:PATH=/root/ws/tyros_ws/build/devel/share/serial/cmake
 
 //Dependencies for the target
 serial_LIB_DEPENDS:STATIC=general;rt;general;pthread;
@@ -496,7 +493,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

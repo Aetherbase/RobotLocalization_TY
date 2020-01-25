@@ -1,14 +1,16 @@
 #include <ros/ros.h>
 #include <pthread.h>
 #include <signal.h>
+#include <sensor_msgs/Imu.h>
 
 extern "C" { 
 #include "faro_can_sdk.h" 
 }
-
+const char* ROSTOPIC_FOR_PUBLISHER="IMU_topic";
 static uint8_t scan_port = 0;
 std::string port_name;
 static int stop_thread = 0;
+sensor_msgs::Imu imu;
 
 #define fprintf(fmt,...) {if (!g_quiet_print_flag) printf(__VA_ARGS__);}
 
@@ -18,7 +20,6 @@ void sig_handler(int signo)
 		fprintf(stderr, "catch SIGINT\n");
 		stop_thread = 1;
 	}
-
 }
 #ifdef FARO_CAN_SDK_DEBUG
 static int do_scan_port(void)
@@ -52,30 +53,66 @@ void makeReadable(const sensor_ctrl_format_t& input_msg,uint16_t* msgarr){
 	tempmsg[4]=input_msg.ctrl5;
 	tempmsg[5]=input_msg.ctrl6;
 };
+int setGyroScale(){
+	struct sensor_ctrl_format_t msg;
+	memset(&msg, 0x00, sizeof(msg));
+	msg.cmd=0x47;
+	msg.dlc_cfg=0x23;
+	msg.ctrl1=0x01;
+	msg.ctrl2=0x20;
+	return AZ_VC_Sensor_Write(msg);
+}
+int setACCScale(){
+	struct sensor_ctrl_format_t msg;
+	memset(&msg, 0x00, sizeof(msg));
+	msg.cmd=0x5F;
+	msg.ctrl1=0x00; // for +-2g
+	return AZ_VC_Sensor_Write(msg);
+}
+inline float mapACC(uint x)
+{
+	constexpr float accval=9.80665*2;
+	return ((x * 2*accval) / 65535) - accval;
+}
+inline float mapGyro(uint x)
+{
+	constexpr float gyrval=245;
+	return ((x * 2*gyrval) / 65535) - gyrval;
+}
 void printACCdata(){
 	try_Assert(AZ_VC_GetACCData(),"Calling AZ_VC_GetACCData fail\n");
-	struct sensor_ctrl_format_t msg={0};
+	struct sensor_ctrl_format_t msg;
+	memset(&msg, 0x00, sizeof(msg));
 	uint32_t read_size=0;
 	AZ_VC_Sensor_Read(&msg, &read_size);
+
 	try_Assert((msg.cmd!=0x91),"Unexpect cmd");
 	fprintf(stdout,"ACC Data:\n");
 	uint16_t tempmsg[3];
 	makeReadable(msg,tempmsg);
-	std::cout<<"\tXX ="<<(uint32_t)(tempmsg[0])<<" YY ="<<(uint32_t)(tempmsg[1])<<" ZZ ="<<(uint32_t)(tempmsg[2])<<std::endl;
+	std::cout<<"\tXX ="<<(uint32_t)(tempmsg[0])<<" YY ="<<(uint32_t)(tempmsg[1])\
+	<<" ZZ ="<<(uint32_t)(tempmsg[2])<<std::endl;
 
+	imu.linear_acceleration.x=mapACC((uint32_t)tempmsg[0]);
+	imu.linear_acceleration.y=mapACC((uint32_t)tempmsg[1]);
+	imu.linear_acceleration.z=mapACC((uint32_t)tempmsg[2]);
 }
-
 void printGyroData(){
 	try_Assert(AZ_VC_GetGyroData(),"Calling AZ_VC_GetGyroData fail\n");
-	struct sensor_ctrl_format_t msg={0};
+	struct sensor_ctrl_format_t msg;
+	memset(&msg, 0x00, sizeof(msg));
 	uint32_t read_size=0;
 	AZ_VC_Sensor_Read(&msg, &read_size);
+
 	try_Assert((msg.cmd!=0x8A),"Unexpect cmd");
 	fprintf(stdout,"Gyro Data:\n");
 	uint16_t tempmsg[3];
 	makeReadable(msg,tempmsg);
 	std::cout<<"\tXX ="<<(uint32_t)(tempmsg[0])<<" YY ="<<(uint32_t)(tempmsg[1])<<" ZZ ="<<(uint32_t)(tempmsg[2])<<std::endl;
-
+	
+	imu.angular_velocity.x=mapGyro((uint32_t)tempmsg[0]);
+	imu.angular_velocity.y=mapGyro((uint32_t)tempmsg[1]);
+	imu.angular_velocity.z=mapGyro((uint32_t)tempmsg[2]);
 }
 int main(int argc, char *argv[])
 {
@@ -83,6 +120,7 @@ int main(int argc, char *argv[])
     ros::NodeHandle nh;
 
 	nh.param<std::string>("port",port_name,"/dev/ttyUSB0");
+    ros::Publisher IMUPub = nh.advertise<sensor_msgs::Imu>(ROSTOPIC_FOR_PUBLISHER, 1000);
 
 	if(signal(SIGINT, sig_handler) == SIG_ERR)
 		fprintf(stderr, "fail to catch SIGINT\n");
@@ -93,10 +131,10 @@ int main(int argc, char *argv[])
 	fprintf(stdout, "starting do_sensor_test on %s\n", port_name.c_str());
 #endif
 	try_Assert(AZ_VC_Init(_port),"sensor initialization failed\n");
-
 	try_Assert(AZ_VC_ModeActive(0),"Calling AZ_VC_ModeActive fail\n");
+	try_Assert(setACCScale(),"failed setting ACCScale");
+	try_Assert(setGyroScale(),"failed setting GyroScale");
 
-	
 #ifdef FARO_CAN_SDK_DEBUG
 	ros::Rate loop_rate(100);
 #else
@@ -104,10 +142,13 @@ int main(int argc, char *argv[])
 #endif
 
 	while(ros::ok()){
+		imu.header.stamp=ros::Time::now();
+		imu.header.frame_id="imu_link";
 
 		printACCdata();
 		printGyroData();
-
+		
+		IMUPub.publish(imu);
         ros::spinOnce();
 		}
     loop_rate.sleep();

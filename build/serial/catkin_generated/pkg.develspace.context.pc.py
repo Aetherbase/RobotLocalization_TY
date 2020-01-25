@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "/root/ws/tyros_ws/src/serial/include".split('
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "-lserial;-lrt;-lpthread".split(';') if "-lserial;-lrt;-lpthread" != "" else []
 PROJECT_NAME = "serial"
-PROJECT_SPACE_DIR = "/root/ws/tyros_ws/devel"
+PROJECT_SPACE_DIR = "/root/ws/tyros_ws/build/devel"
 PROJECT_VERSION = "1.2.1"

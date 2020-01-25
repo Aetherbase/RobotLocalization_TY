@@ -1,0 +1,8 @@
+prefix=/root/ws/tyros_ws/build/devel
+
+Name: gps_map_frame
+Description: Description of gps_map_frame
+Version: 0.0.0
+Cflags: 
+Libs: -L/root/ws/tyros_ws/build/devel/lib 
+Requires: 

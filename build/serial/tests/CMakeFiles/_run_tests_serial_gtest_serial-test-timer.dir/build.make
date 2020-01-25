@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /root/ws/tyros_ws/build
 include serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/progress.make
 
 serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer:
-	cd /root/ws/tyros_ws/build/serial/tests && ../../catkin_generated/env_cached.sh /usr/sbin/python3 /opt/ros/melodic/share/catkin/cmake/test/run_tests.py /root/ws/tyros_ws/build/test_results/serial/gtest-serial-test-timer.xml "/root/ws/tyros_ws/devel/lib/serial/serial-test-timer --gtest_output=xml:/root/ws/tyros_ws/build/test_results/serial/gtest-serial-test-timer.xml"
+	cd /root/ws/tyros_ws/build/serial/tests && ../../catkin_generated/env_cached.sh /usr/sbin/python3 /opt/ros/melodic/share/catkin/cmake/test/run_tests.py /root/ws/tyros_ws/build/test_results/serial/gtest-serial-test-timer.xml "/root/ws/tyros_ws/build/devel/lib/serial/serial-test-timer --gtest_output=xml:/root/ws/tyros_ws/build/test_results/serial/gtest-serial-test-timer.xml"
 
 _run_tests_serial_gtest_serial-test-timer: serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer
 _run_tests_serial_gtest_serial-test-timer: serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/build.make

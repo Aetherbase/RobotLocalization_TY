@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/root/ws/tyros_ws/devel/lib/gps_map_frame/speedWrite"
-  "/root/ws/tyros_ws/devel/lib/gps_map_frame/speedWrite.pdb"
+  "../devel/lib/gps_map_frame/speedWrite"
+  "../devel/lib/gps_map_frame/speedWrite.pdb"
   "CMakeFiles/speedWrite.dir/src/send_speed.cpp.o"
 )
 
