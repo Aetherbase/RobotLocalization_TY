@@ -69,6 +69,32 @@ int setACCScale(){
 	msg.ctrl1=0x00; // for +-2g
 	return AZ_VC_Sensor_Write(msg);
 }
+void can_config()
+{
+
+#ifdef FARO_CAN_SDK_DEBUG
+		fprintf(stdout, "starting can_config on %s\n", port_name);
+#endif
+	struct can_config_t can_config_data;
+	can_config_data.port=0;
+	can_config_data.speed=(can_speed)2;
+	try_Assert(AZ_VC_CAN_Config(can_config_data),"CAN config failed/n");
+
+}
+void print_speed()
+{
+	struct can_message_t msg;
+	memset(&msg, 0x00, sizeof(msg));
+	uint32_t size = 0;
+
+	try_Assert(AZ_VC_CAN_Read(&msg, &size),"Error reading CAN\n");
+	fprintf(stdout, "port = %d, ID = 0x%08X\n",  msg.port, msg.id);									
+	if((msg.id & 0x00FFFF00) == 0x00FEF100)		//Ccveh_speed data
+		{
+		float speed = (float)((msg.data[2] << 8) | msg.data[1]) / 256;
+		fprintf(stdout,"speed : %.1f km\n",speed);
+		}
+}
 inline float mapACC(uint x)
 {
 	constexpr float accval=9.80665*2;
@@ -147,6 +173,8 @@ int main(int argc, char *argv[])
 
 		printACCdata();
 		printGyroData();
+		can_config();
+		print_speed();
 		
 		IMUPub.publish(imu);
         ros::spinOnce();
