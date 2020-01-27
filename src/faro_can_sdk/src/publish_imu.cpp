@@ -66,7 +66,7 @@ int setACCScale(){
 	struct sensor_ctrl_format_t msg;
 	memset(&msg, 0x00, sizeof(msg));
 	msg.cmd=0x5F;
-	msg.ctrl1=0x01; // for +-2g //temp test
+	msg.ctrl1=0x00; // for +-2g
 	return AZ_VC_Sensor_Write(msg);
 }
 inline float mapACC(uint x)
