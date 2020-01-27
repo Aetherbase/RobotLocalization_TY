@@ -160,20 +160,19 @@ int main(int argc, char *argv[])
 	try_Assert(AZ_VC_ModeActive(0),"Calling AZ_VC_ModeActive fail\n");
 	try_Assert(setACCScale(),"failed setting ACCScale");
 	try_Assert(setGyroScale(),"failed setting GyroScale");
+	can_config();
 
 #ifdef FARO_CAN_SDK_DEBUG
 	ros::Rate loop_rate(100);
 #else
 	ros::Rate loop_rate(1);
 #endif
-
 	while(ros::ok()){
 		imu.header.stamp=ros::Time::now();
 		imu.header.frame_id="imu_link";
 
 		printACCdata();
 		printGyroData();
-		can_config();
 		print_speed();
 		
 		IMUPub.publish(imu);
