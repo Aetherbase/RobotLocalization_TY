@@ -56,6 +56,37 @@ void makeReadable(const sensor_ctrl_format_t& input_msg,uint16_t* msgarr){
 	tempmsg[4]=input_msg.ctrl5;
 	tempmsg[5]=input_msg.ctrl6;
 };
+
+int calibAcc(){
+	struct sensor_ctrl_format_t msg;
+	memset(&msg, 0x00, sizeof(msg));
+	msg.cmd=0x55;
+	msg.dlc_cfg=0x00;
+	msg.ctrl1=0x00;
+	msg.ctrl2=0x00;
+	msg.ctrl3=0x00;
+	msg.ctrl4=0x00;
+	msg.ctrl5=0x00;
+	msg.ctrl6=0x00;
+	msg.ctrl7=0x00;
+	return AZ_VC_Sensor_Write(msg);
+}
+
+int calibGyro(){
+	struct sensor_ctrl_format_t msg;
+	memset(&msg, 0x00, sizeof(msg));
+	msg.cmd=0x46;
+	msg.dlc_cfg=0x00;
+	msg.ctrl1=0x00;
+	msg.ctrl2=0x00;
+	msg.ctrl3=0x00;
+	msg.ctrl4=0x00;
+	msg.ctrl5=0x00;
+	msg.ctrl6=0x00;
+	msg.ctrl7=0x00;
+	return AZ_VC_Sensor_Write(msg);
+}
+
 int setGyroScale(){
 	struct sensor_ctrl_format_t msg;
 	memset(&msg, 0x00, sizeof(msg));
@@ -92,11 +123,12 @@ bool print_speed()
 
 	try_Assert(AZ_VC_CAN_Read(&msg, &size),"Error reading CAN\n");
 	fprintf(stdout, "port = %d, ID = 0x%08X\n",  msg.port, msg.id);									
-	if((msg.id & 0x00FFFF00) == 0x00FEF100)		//Ccveh_speed data
+	if(msg.id == 0x80)		//Ccveh_speed data
 		{
-		float speed_f = (float)((msg.data[2] << 8) | msg.data[1]) / 256;
+		float speed_f = (float)((msg.data[0] << 8) | msg.data[1]);
+		speed_f*=0.05555555555;
 		fprintf(stdout,"speed : %.1f km\n",speed_f);
-		speed.data=(speed_f*3600);
+		speed.data=(speed_f*0.2777*1000);
 		return true;
 		}
 	return false;
@@ -165,9 +197,12 @@ int main(int argc, char *argv[])
 #endif
 	try_Assert(AZ_VC_Init(_port),"sensor initialization failed\n");
 	try_Assert(AZ_VC_ModeActive(0),"Calling AZ_VC_ModeActive fail\n");
+	try_Assert(calibAcc(),"failed to Calibrate Acc");
+	try_Assert(calibGyro(),"failed to Calibrate Gyro");
+	//can_config();
 	try_Assert(setACCScale(),"failed setting ACCScale");
 	try_Assert(setGyroScale(),"failed setting GyroScale");
-	can_config();
+	
 
 #ifdef FARO_CAN_SDK_DEBUG
 	ros::Rate loop_rate(100);
@@ -180,7 +215,7 @@ int main(int argc, char *argv[])
 
 		printACCdata();
 		printGyroData();
-		if(print_speed()) SpeedPub.publish(speed);
+		//if(print_speed()) SpeedPub.publish(speed);
 		
 		IMUPub.publish(imu);
         ros::spinOnce();
