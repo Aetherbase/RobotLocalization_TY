@@ -61,6 +61,7 @@ faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /opt/ros/melodic/
 faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /opt/ros/melodic/include/rosconsole/macros_generated.h
 faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /opt/ros/melodic/include/sensor_msgs/Imu.h
 faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /opt/ros/melodic/include/std_msgs/Header.h
+faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /opt/ros/melodic/include/std_msgs/Int32.h
 faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /opt/ros/melodic/include/xmlrpcpp/XmlRpcDecl.h
 faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /opt/ros/melodic/include/xmlrpcpp/XmlRpcValue.h
 faro_can_sdk/CMakeFiles/publish_imu.dir/src/publish_imu.cpp.o: /root/ws/tyros_ws/src/faro_can_sdk/include/faro_can_sdk.h

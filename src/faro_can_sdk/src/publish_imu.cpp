@@ -2,15 +2,18 @@
 #include <pthread.h>
 #include <signal.h>
 #include <sensor_msgs/Imu.h>
+#include <std_msgs/Int32.h>
 
 extern "C" { 
 #include "faro_can_sdk.h" 
 }
 const char* ROSTOPIC_FOR_PUBLISHER="IMU_topic";
+const char* ROSTOPIC_SPEED_PUBLISHER="/ezypilot/canspeed";
 static uint8_t scan_port = 0;
 std::string port_name;
 static int stop_thread = 0;
 sensor_msgs::Imu imu;
+std_msgs::Int32 speed; 
 
 #define fprintf(fmt,...) {if (!g_quiet_print_flag) printf(__VA_ARGS__);}
 
@@ -81,7 +84,7 @@ void can_config()
 	try_Assert(AZ_VC_CAN_Config(can_config_data),"CAN config failed/n");
 
 }
-void print_speed()
+bool print_speed()
 {
 	struct can_message_t msg;
 	memset(&msg, 0x00, sizeof(msg));
@@ -91,9 +94,12 @@ void print_speed()
 	fprintf(stdout, "port = %d, ID = 0x%08X\n",  msg.port, msg.id);									
 	if((msg.id & 0x00FFFF00) == 0x00FEF100)		//Ccveh_speed data
 		{
-		float speed = (float)((msg.data[2] << 8) | msg.data[1]) / 256;
-		fprintf(stdout,"speed : %.1f km\n",speed);
+		float speed_f = (float)((msg.data[2] << 8) | msg.data[1]) / 256;
+		fprintf(stdout,"speed : %.1f km\n",speed_f);
+		speed.data=(speed_f*3600);
+		return true;
 		}
+	return false;
 }
 inline float mapACC(uint x)
 {
@@ -147,6 +153,7 @@ int main(int argc, char *argv[])
 
 	nh.param<std::string>("port",port_name,"/dev/ttyUSB0");
     ros::Publisher IMUPub = nh.advertise<sensor_msgs::Imu>(ROSTOPIC_FOR_PUBLISHER, 1000);
+    ros::Publisher SpeedPub = nh.advertise<std_msgs::Int32>(ROSTOPIC_SPEED_PUBLISHER, 10);
 
 	if(signal(SIGINT, sig_handler) == SIG_ERR)
 		fprintf(stderr, "fail to catch SIGINT\n");
@@ -173,7 +180,7 @@ int main(int argc, char *argv[])
 
 		printACCdata();
 		printGyroData();
-		print_speed();
+		if(print_speed()) SpeedPub.publish(speed);
 		
 		IMUPub.publish(imu);
         ros::spinOnce();
