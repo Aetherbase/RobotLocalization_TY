@@ -47,6 +47,11 @@ inline void try_Assert(int _val, const char* errstr){
 		exit(1);
 		}
 }
+inline void try_Assert_rt(int _val, const char* errstr){
+	if(_val!=0){
+		fprintf(stdout,errstr);
+		}
+}
 void makeReadable(const sensor_ctrl_format_t& input_msg,int16_t* msgarr){
 	uint8_t* tempmsg=(uint8_t*)msgarr;
 	tempmsg[0]=input_msg.ctrl1;
@@ -121,7 +126,7 @@ bool print_speed()
 	memset(&msg, 0x00, sizeof(msg));
 	uint32_t size = 0;
 
-	try_Assert(AZ_VC_CAN_Read(&msg, &size),"Error reading CAN\n");
+	try_Assert_rt(AZ_VC_CAN_Read(&msg, &size),"Error reading CAN\n");
 	fprintf(stdout, "port = %d, ID = 0x%08X\n",  msg.port, msg.id);									
 	if(msg.id == 0x80)		//Ccveh_speed data
 		{
@@ -145,41 +150,53 @@ inline float mapGyro(const int16_t x)
 	constexpr float gyrval=245;
 	return ((y * gyrval) / 32767);
 }
-void printACCdata(){
-	try_Assert(AZ_VC_GetACCData(),"Calling AZ_VC_GetACCData fail\n");
-	struct sensor_ctrl_format_t msg;
-	memset(&msg, 0x00, sizeof(msg));
-	uint32_t read_size=0;
-	AZ_VC_Sensor_Read(&msg, &read_size);
+bool printACCdata(){
+	if(AZ_VC_GetACCData()!=0){
+		struct sensor_ctrl_format_t msg;
+		memset(&msg, 0x00, sizeof(msg));
+		uint32_t read_size=0;
+		AZ_VC_Sensor_Read(&msg, &read_size);
 
-	try_Assert((msg.cmd!=0x91),"Unexpect cmd");
-	fprintf(stdout,"ACC Data:\n");
-	int16_t tempmsg[3];
-	makeReadable(msg,tempmsg);
-	std::cout<<"\tXX ="<<(tempmsg[0])<<" YY ="<<(tempmsg[1])\
-	<<" ZZ ="<<(tempmsg[2])<<std::endl;
+		try_Assert((msg.cmd!=0x91),"Unexpect cmd");
+		fprintf(stdout,"ACC Data:\n");
+		int16_t tempmsg[3];
+		makeReadable(msg,tempmsg);
+		std::cout<<"\tXX ="<<(tempmsg[0])<<" YY ="<<(tempmsg[1])\
+		<<" ZZ ="<<(tempmsg[2])<<std::endl;
 
-	imu.linear_acceleration.x=mapACC(tempmsg[0]);
-	imu.linear_acceleration.y=mapACC(tempmsg[1]);
-	imu.linear_acceleration.z=mapACC(tempmsg[2]);
+		imu.linear_acceleration.x=mapACC(tempmsg[0]);
+		imu.linear_acceleration.y=mapACC(tempmsg[1]);
+		imu.linear_acceleration.z=mapACC(tempmsg[2]);
+		return true;
+	}
+	else{
+		fprintf(stdout,"Calling AZ_VC_GetACCData fail\n");
+		return false;
+	}
 }
-void printGyroData(){
-	try_Assert(AZ_VC_GetGyroData(),"Calling AZ_VC_GetGyroData fail\n");
-	struct sensor_ctrl_format_t msg;
-	memset(&msg, 0x00, sizeof(msg));
-	uint32_t read_size=0;
-	AZ_VC_Sensor_Read(&msg, &read_size);
+bool  printGyroData(){
+	if(AZ_VC_GetGyroData()!=0){
+		struct sensor_ctrl_format_t msg;
+		memset(&msg, 0x00, sizeof(msg));
+		uint32_t read_size=0;
+		AZ_VC_Sensor_Read(&msg, &read_size);
 
-	try_Assert((msg.cmd!=0x8A),"Unexpect cmd");
-	fprintf(stdout,"Gyro Data:\n");
-	int16_t tempmsg[3];
-	makeReadable(msg,tempmsg);
-	std::cout<<"\tXX ="<<(tempmsg[0])<<" YY ="<<(tempmsg[1])\
-	<<" ZZ ="<<(tempmsg[2])<<std::endl;
-	
-	imu.angular_velocity.x=mapGyro(tempmsg[0]);
-	imu.angular_velocity.y=mapGyro(tempmsg[1]);
-	imu.angular_velocity.z=mapGyro(tempmsg[2]);
+		try_Assert((msg.cmd!=0x8A),"Unexpect cmd");
+		fprintf(stdout,"Gyro Data:\n");
+		int16_t tempmsg[3];
+		makeReadable(msg,tempmsg);
+		std::cout<<"\tXX ="<<(tempmsg[0])<<" YY ="<<(tempmsg[1])\
+		<<" ZZ ="<<(tempmsg[2])<<std::endl;
+		
+		imu.angular_velocity.x=mapGyro(tempmsg[0]);
+		imu.angular_velocity.y=mapGyro(tempmsg[1]);
+		imu.angular_velocity.z=mapGyro(tempmsg[2]);
+		return true;
+	}
+	else{
+		fprintf(stdout,"Calling AZ_VC_GetGyroData fail\n");
+		return false;
+	}
 }
 int main(int argc, char *argv[])
 {
@@ -216,11 +233,9 @@ int main(int argc, char *argv[])
 		imu.header.stamp=ros::Time::now();
 		imu.header.frame_id="imu_link";
 
-		printACCdata();
-		printGyroData();
+		if(printACCdata() and printGyroData()) IMUPub.publish(imu);
 		if(print_speed()) SpeedPub.publish(speed);
 		
-		IMUPub.publish(imu);
         ros::spinOnce();
 		}
     loop_rate.sleep();
