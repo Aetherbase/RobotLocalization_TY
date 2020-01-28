@@ -47,7 +47,7 @@ inline void try_Assert(int _val, const char* errstr){
 		exit(1);
 		}
 }
-void makeReadable(const sensor_ctrl_format_t& input_msg,uint16_t* msgarr){
+void makeReadable(const sensor_ctrl_format_t& input_msg,int16_t* msgarr){
 	uint8_t* tempmsg=(uint8_t*)msgarr;
 	tempmsg[0]=input_msg.ctrl1;
 	tempmsg[1]=input_msg.ctrl2;
@@ -133,13 +133,13 @@ bool print_speed()
 		}
 	return false;
 }
-inline float mapACC(const int x)
+inline float mapACC(const int16_t x)
 {
 	const float y = static_cast<float>(x);
 	constexpr float accval=9.80665*2;
 	return ((y * accval) / 32767);
 }
-inline float mapGyro(const int x)
+inline float mapGyro(const int16_t x)
 {
 	const float y = static_cast<float>(x);
 	constexpr float gyrval=245;
@@ -154,14 +154,14 @@ void printACCdata(){
 
 	try_Assert((msg.cmd!=0x91),"Unexpect cmd");
 	fprintf(stdout,"ACC Data:\n");
-	uint16_t tempmsg[3];
+	int16_t tempmsg[3];
 	makeReadable(msg,tempmsg);
-	std::cout<<"\tXX ="<<(int32_t)(tempmsg[0])<<" YY ="<<(int32_t)(tempmsg[1])\
-	<<" ZZ ="<<(int32_t)(tempmsg[2])<<std::endl;
+	std::cout<<"\tXX ="<<(tempmsg[0])<<" YY ="<<(tempmsg[1])\
+	<<" ZZ ="<<(tempmsg[2])<<std::endl;
 
-	imu.linear_acceleration.x=mapACC((int32_t)tempmsg[0]);
-	imu.linear_acceleration.y=mapACC((int32_t)tempmsg[1]);
-	imu.linear_acceleration.z=mapACC((int32_t)tempmsg[2]);
+	imu.linear_acceleration.x=mapACC(tempmsg[0]);
+	imu.linear_acceleration.y=mapACC(tempmsg[1]);
+	imu.linear_acceleration.z=mapACC(tempmsg[2]);
 }
 void printGyroData(){
 	try_Assert(AZ_VC_GetGyroData(),"Calling AZ_VC_GetGyroData fail\n");
@@ -172,13 +172,14 @@ void printGyroData(){
 
 	try_Assert((msg.cmd!=0x8A),"Unexpect cmd");
 	fprintf(stdout,"Gyro Data:\n");
-	uint16_t tempmsg[3];
+	int16_t tempmsg[3];
 	makeReadable(msg,tempmsg);
-	std::cout<<"\tXX ="<<(int32_t)(tempmsg[0])<<" YY ="<<(int32_t)(tempmsg[1])<<" ZZ ="<<(int32_t)(tempmsg[2])<<std::endl;
+	std::cout<<"\tXX ="<<(tempmsg[0])<<" YY ="<<(tempmsg[1])\
+	<<" ZZ ="<<(tempmsg[2])<<std::endl;
 	
-	imu.angular_velocity.x=mapGyro((int32_t)tempmsg[0]);
-	imu.angular_velocity.y=mapGyro((int32_t)tempmsg[1]);
-	imu.angular_velocity.z=mapGyro((int32_t)tempmsg[2]);
+	imu.angular_velocity.x=mapGyro(tempmsg[0]);
+	imu.angular_velocity.y=mapGyro(tempmsg[1]);
+	imu.angular_velocity.z=mapGyro(tempmsg[2]);
 }
 int main(int argc, char *argv[])
 {
