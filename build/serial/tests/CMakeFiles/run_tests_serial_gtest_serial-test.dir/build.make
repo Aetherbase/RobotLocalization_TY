@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /root/ws/tyros_ws/build
 include serial/tests/CMakeFiles/run_tests_serial_gtest_serial-test.dir/progress.make
 
 serial/tests/CMakeFiles/run_tests_serial_gtest_serial-test:
-	cd /root/ws/tyros_ws/build/serial/tests && ../../catkin_generated/env_cached.sh /usr/sbin/python3 /opt/ros/melodic/share/catkin/cmake/test/run_tests.py /root/ws/tyros_ws/build/test_results/serial/gtest-serial-test.xml "/root/ws/tyros_ws/build/devel/lib/serial/serial-test --gtest_output=xml:/root/ws/tyros_ws/build/test_results/serial/gtest-serial-test.xml"
+	cd /root/ws/tyros_ws/build/serial/tests && ../../catkin_generated/env_cached.sh /usr/sbin/python3 /opt/ros/melodic/share/catkin/cmake/test/run_tests.py /root/ws/tyros_ws/build/test_results/serial/gtest-serial-test.xml "/root/ws/tyros_ws/devel/lib/serial/serial-test --gtest_output=xml:/root/ws/tyros_ws/build/test_results/serial/gtest-serial-test.xml"
 
 run_tests_serial_gtest_serial-test: serial/tests/CMakeFiles/run_tests_serial_gtest_serial-test
 run_tests_serial_gtest_serial-test: serial/tests/CMakeFiles/run_tests_serial_gtest_serial-test.dir/build.make

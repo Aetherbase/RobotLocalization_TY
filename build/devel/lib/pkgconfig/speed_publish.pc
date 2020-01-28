@@ -1,8 +1,0 @@
-prefix=/root/ws/tyros_ws/build/devel
-
-Name: speed_publish
-Description: Description of speed_publish
-Version: 0.0.0
-Cflags: -I/root/ws/tyros_ws/src/speed_publish/lib -I/root/ws/tyros_ws/src/speed_publish/include
-Libs: -L/root/ws/tyros_ws/build/devel/lib 
-Requires: 

@@ -1,8 +1,8 @@
-prefix=/usr/local
+prefix=/root/ws/tyros_ws/install
 
 Name: gps_map_frame
 Description: Description of gps_map_frame
 Version: 0.0.0
 Cflags: 
-Libs: -L/usr/local/lib 
+Libs: -L/root/ws/tyros_ws/install/lib 
 Requires: 

@@ -1,8 +1,0 @@
-prefix=/root/ws/tyros_ws/build/devel
-
-Name: faro_can_sdk
-Description: Description of faro_can_sdk
-Version: 0.0.0
-Cflags: 
-Libs: -L/root/ws/tyros_ws/build/devel/lib -lfaro_can_sdk
-Requires: 

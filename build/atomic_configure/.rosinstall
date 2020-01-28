@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /root/ws/tyros_ws/build/devel/setup.sh
+    local-name: /root/ws/tyros_ws/devel/setup.sh

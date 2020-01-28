@@ -1,8 +1,8 @@
-prefix=/usr/local
+prefix=/root/ws/tyros_ws/install
 
 Name: faro_can_sdk
 Description: Description of faro_can_sdk
 Version: 0.0.0
 Cflags: 
-Libs: -L/usr/local/lib -lfaro_can_sdk
+Libs: -L/root/ws/tyros_ws/install/lib -lfaro_can_sdk
 Requires: 

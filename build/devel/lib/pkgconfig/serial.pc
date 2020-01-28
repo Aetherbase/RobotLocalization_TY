@@ -1,8 +1,0 @@
-prefix=/root/ws/tyros_ws/build/devel
-
-Name: serial
-Description: Description of serial
-Version: 1.2.1
-Cflags: -I/root/ws/tyros_ws/src/serial/include
-Libs: -L/root/ws/tyros_ws/build/devel/lib -lserial -lrt -lpthread
-Requires: 

@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "gps_map_frame"
-PROJECT_SPACE_DIR = "/usr/local"
+PROJECT_SPACE_DIR = "/root/ws/tyros_ws/install"
 PROJECT_VERSION = "0.0.0"

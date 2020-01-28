@@ -1,8 +1,8 @@
-prefix=/usr/local
+prefix=/root/ws/tyros_ws/install
 
 Name: serial
 Description: Description of serial
 Version: 1.2.1
-Cflags: -I/usr/local/include
-Libs: -L/usr/local/lib -lserial -lrt -lpthread
+Cflags: -I/root/ws/tyros_ws/install/include
+Libs: -L/root/ws/tyros_ws/install/lib -lserial -lrt -lpthread
 Requires: 

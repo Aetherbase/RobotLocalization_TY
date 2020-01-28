@@ -108,7 +108,7 @@ int setACCScale(){
 	msg.ctrl1=0x00; // for +-2g
 	return AZ_VC_Sensor_Write(msg);
 }
-void can_config()
+int can_config()
 {
 
 #ifdef FARO_CAN_SDK_DEBUG
@@ -117,7 +117,7 @@ void can_config()
 	struct can_config_t can_config_data;
 	can_config_data.port=0;
 	can_config_data.speed=(can_speed)2;
-	try_Assert(AZ_VC_CAN_Config(can_config_data),"CAN config failed/n");
+	return(AZ_VC_CAN_Config(can_config_data));
 
 }
 bool print_speed()
@@ -215,11 +215,11 @@ int main(int argc, char *argv[])
 #endif
 	try_Assert(AZ_VC_Init(_port),"sensor initialization failed\n");
 	try_Assert(AZ_VC_ModeActive(0),"Calling AZ_VC_ModeActive fail\n");
-	try_Assert(calibAcc(),"failed to Calibrate Acc");
-	try_Assert(calibGyro(),"failed to Calibrate Gyro");
-	can_config();
-	try_Assert(setACCScale(),"failed setting ACCScale");
-	try_Assert(setGyroScale(),"failed setting GyroScale");
+	try_Assert(calibAcc(),"failed to Calibrate Acc\n");
+	try_Assert(calibGyro(),"failed to Calibrate Gyro\n");
+	try_Assert(can_config(),"CAN config failed\n");
+	try_Assert(setACCScale(),"failed setting ACCScale\n");
+	try_Assert(setGyroScale(),"failed setting GyroScale\n");
 	
 
 #ifdef FARO_CAN_SDK_DEBUG

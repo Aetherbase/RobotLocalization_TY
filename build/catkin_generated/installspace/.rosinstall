@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /usr/local/setup.sh
+    local-name: /root/ws/tyros_ws/install/setup.sh

@@ -20,6 +20,9 @@ BUILD_SHARED_LIBS:BOOL=ON
 //List of ';' separated packages to exclude
 CATKIN_BLACKLIST_PACKAGES:STRING=
 
+//catkin devel space
+CATKIN_DEVEL_PREFIX:PATH=/root/ws/tyros_ws/devel
+
 //Catkin enable testing
 CATKIN_ENABLE_TESTING:BOOL=ON
 
@@ -120,7 +123,7 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=OFF
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=/usr/local
+CMAKE_INSTALL_PREFIX:PATH=/root/ws/tyros_ws/install
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/sbin/ld
@@ -355,7 +358,7 @@ sensor_msgs_DIR:PATH=/opt/ros/melodic/share/sensor_msgs/cmake
 serial_BINARY_DIR:STATIC=/root/ws/tyros_ws/build/serial
 
 //The directory containing a CMake configuration file for serial.
-serial_DIR:PATH=/root/ws/tyros_ws/build/devel/share/serial/cmake
+serial_DIR:PATH=/root/ws/tyros_ws/devel/share/serial/cmake
 
 //Dependencies for the target
 serial_LIB_DEPENDS:STATIC=general;rt;general;pthread;
