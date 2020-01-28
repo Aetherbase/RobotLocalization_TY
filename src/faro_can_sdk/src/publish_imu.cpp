@@ -154,12 +154,12 @@ void printACCdata(){
 	fprintf(stdout,"ACC Data:\n");
 	uint16_t tempmsg[3];
 	makeReadable(msg,tempmsg);
-	std::cout<<"\tXX ="<<(uint32_t)(tempmsg[0])<<" YY ="<<(uint32_t)(tempmsg[1])\
-	<<" ZZ ="<<(uint32_t)(tempmsg[2])<<std::endl;
+	std::cout<<"\tXX ="<<(int32_t)(tempmsg[0])<<" YY ="<<(int32_t)(tempmsg[1])\
+	<<" ZZ ="<<(int32_t)(tempmsg[2])<<std::endl;
 
-	imu.linear_acceleration.x=mapACC((uint32_t)tempmsg[0]);
-	imu.linear_acceleration.y=mapACC((uint32_t)tempmsg[1]);
-	imu.linear_acceleration.z=mapACC((uint32_t)tempmsg[2]);
+	imu.linear_acceleration.x=mapACC((int32_t)tempmsg[0]);
+	imu.linear_acceleration.y=mapACC((int32_t)tempmsg[1]);
+	imu.linear_acceleration.z=mapACC((int32_t)tempmsg[2]);
 }
 void printGyroData(){
 	try_Assert(AZ_VC_GetGyroData(),"Calling AZ_VC_GetGyroData fail\n");
@@ -174,9 +174,9 @@ void printGyroData(){
 	makeReadable(msg,tempmsg);
 	std::cout<<"\tXX ="<<(uint32_t)(tempmsg[0])<<" YY ="<<(uint32_t)(tempmsg[1])<<" ZZ ="<<(uint32_t)(tempmsg[2])<<std::endl;
 	
-	imu.angular_velocity.x=mapGyro((uint32_t)tempmsg[0]);
-	imu.angular_velocity.y=mapGyro((uint32_t)tempmsg[1]);
-	imu.angular_velocity.z=mapGyro((uint32_t)tempmsg[2]);
+	imu.angular_velocity.x=mapGyro((int32_t)tempmsg[0]);
+	imu.angular_velocity.y=mapGyro((int32_t)tempmsg[1]);
+	imu.angular_velocity.z=mapGyro((int32_t)tempmsg[2]);
 }
 int main(int argc, char *argv[])
 {
@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
 	try_Assert(AZ_VC_ModeActive(0),"Calling AZ_VC_ModeActive fail\n");
 	try_Assert(calibAcc(),"failed to Calibrate Acc");
 	try_Assert(calibGyro(),"failed to Calibrate Gyro");
-	//can_config();
+	can_config();
 	try_Assert(setACCScale(),"failed setting ACCScale");
 	try_Assert(setGyroScale(),"failed setting GyroScale");
 	
@@ -215,7 +215,7 @@ int main(int argc, char *argv[])
 
 		printACCdata();
 		printGyroData();
-		//if(print_speed()) SpeedPub.publish(speed);
+		if(print_speed()) SpeedPub.publish(speed);
 		
 		IMUPub.publish(imu);
         ros::spinOnce();
