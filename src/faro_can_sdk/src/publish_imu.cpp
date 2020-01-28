@@ -172,7 +172,7 @@ void printGyroData(){
 	fprintf(stdout,"Gyro Data:\n");
 	uint16_t tempmsg[3];
 	makeReadable(msg,tempmsg);
-	std::cout<<"\tXX ="<<(uint32_t)(tempmsg[0])<<" YY ="<<(uint32_t)(tempmsg[1])<<" ZZ ="<<(uint32_t)(tempmsg[2])<<std::endl;
+	std::cout<<"\tXX ="<<(int32_t)(tempmsg[0])<<" YY ="<<(int32_t)(tempmsg[1])<<" ZZ ="<<(int32_t)(tempmsg[2])<<std::endl;
 	
 	imu.angular_velocity.x=mapGyro((int32_t)tempmsg[0]);
 	imu.angular_velocity.y=mapGyro((int32_t)tempmsg[1]);
