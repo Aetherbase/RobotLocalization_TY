@@ -140,15 +140,13 @@ bool print_speed()
 }
 inline float mapACC(const int16_t x)
 {
-	const float y = static_cast<float>(x);
 	constexpr float accval=9.80665*2;
-	return ((y * accval) / 32767);
+	return ((x * accval) / 32767);
 }
 inline float mapGyro(const int16_t x)
 {
-	const float y = static_cast<float>(x);
 	constexpr float gyrval=245;
-	return ((y * gyrval) / 32767);
+	return ((x * gyrval) / 32767);
 }
 bool printACCdata(){
 	if(AZ_VC_GetACCData()!=0){
