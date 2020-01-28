@@ -133,15 +133,17 @@ bool print_speed()
 		}
 	return false;
 }
-inline float mapACC(uint x)
+inline float mapACC(const int x)
 {
+	const float y = static_cast<float>(x);
 	constexpr float accval=9.80665*2;
-	return ((x * 2*accval) / 65535) - accval;
+	return ((y * accval) / 32767);
 }
-inline float mapGyro(uint x)
+inline float mapGyro(const int x)
 {
+	const float y = static_cast<float>(x);
 	constexpr float gyrval=245;
-	return ((x * 2*gyrval) / 65535) - gyrval;
+	return ((y * gyrval) / 32767);
 }
 void printACCdata(){
 	try_Assert(AZ_VC_GetACCData(),"Calling AZ_VC_GetACCData fail\n");
