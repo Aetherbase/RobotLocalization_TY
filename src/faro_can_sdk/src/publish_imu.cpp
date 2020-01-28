@@ -149,7 +149,7 @@ inline float mapGyro(const int16_t x)
 	return ((x * gyrval) / 32767);
 }
 bool printACCdata(){
-	if(AZ_VC_GetACCData()!=0){
+	if(AZ_VC_GetACCData()==0){
 		struct sensor_ctrl_format_t msg;
 		memset(&msg, 0x00, sizeof(msg));
 		uint32_t read_size=0;
@@ -173,7 +173,7 @@ bool printACCdata(){
 	}
 }
 bool  printGyroData(){
-	if(AZ_VC_GetGyroData()!=0){
+	if(AZ_VC_GetGyroData()==0){
 		struct sensor_ctrl_format_t msg;
 		memset(&msg, 0x00, sizeof(msg));
 		uint32_t read_size=0;
