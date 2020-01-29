@@ -55,7 +55,7 @@ void write_speed(const std_msgs::Int32::ConstPtr& speed){
 void parseGPS(const char* inputS, sensor_msgs::NavSatFix& toSend){
     float Lat,Long,Alt;
     char ns,ew;
-    sscanf(inputS,"%*200c $PUBX,%*d,%*f,%f,%[NS],%f,%[EW],%f,%*[NDGRT]%*[FR23KT],%*f,%*f,%*f,%*f,%*f,,%*f,%*f,%*f,%*d,%*d,%*f",&Lat,&ns,&Long,&ew,&Alt);
+    sscanf(inputS,"$PUBX,%*d,%*f,%f,%[NS],%f,%[EW],%f,%*[NDGRT]%*[FR23KT],%*f,%*f,%*f,%*f,%*f,,%*f,%*f,%*f,%*d,%*d,%*d%*[*]%*d",&Lat,&ns,&Long,&ew,&Alt);
     Lat=(ns=='S') ? Lat/100*(-1) : Lat/100;
     Long=(ew=='W') ? Long/100*(-1) : Long/100;
     toSend.latitude=Lat;
