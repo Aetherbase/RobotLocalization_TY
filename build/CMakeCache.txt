@@ -324,8 +324,14 @@ gps_map_frame_BINARY_DIR:STATIC=/root/ws/tyros_ws/build/gps_map_frame
 //Value Computed by CMake
 gps_map_frame_SOURCE_DIR:STATIC=/root/ws/tyros_ws/src/gps_map_frame
 
+//Value Computed by CMake
+imuread_BINARY_DIR:STATIC=/root/ws/tyros_ws/build/imuread
+
+//Value Computed by CMake
+imuread_SOURCE_DIR:STATIC=/root/ws/tyros_ws/src/imuread
+
 //Path to a library.
-lib:FILEPATH=/usr/lib/libpthread.so
+lib:FILEPATH=/opt/ros/melodic/lib/libxmlrpcpp.so
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/melodic/share/message_runtime/cmake

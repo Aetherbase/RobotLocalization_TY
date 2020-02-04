@@ -1,5 +1,4 @@
 #include <ros/ros.h>
-#include <pthread.h>
 #include <signal.h>
 #include <sensor_msgs/Imu.h>
 #include <std_msgs/Int32.h>
@@ -7,6 +6,10 @@
 extern "C" { 
 #include "faro_can_sdk.h" 
 }
+namespace acc_offset { const int16_t along_x=0;
+		const int16_t along_y=0;
+		const int16_t along_z=0;
+};
 const char* ROSTOPIC_FOR_PUBLISHER="IMU_topic";
 const char* ROSTOPIC_SPEED_PUBLISHER="/ezypilot/canspeed";
 static uint8_t scan_port = 0;
@@ -14,6 +17,7 @@ std::string port_name;
 static int stop_thread = 0;
 sensor_msgs::Imu imu;
 std_msgs::Int32 speed; 
+struct can_filter_config_t can_filter_config;
 
 #define fprintf(fmt,...) {if (!g_quiet_print_flag) printf(__VA_ARGS__);}
 
@@ -91,6 +95,16 @@ int calibGyro(){
 	msg.ctrl7=0x00;
 	return AZ_VC_Sensor_Write(msg);
 }
+void can_filter_mask_apply(){
+	can_filter_config.type = 0;
+	can_filter_config.port =0;
+	can_filter_config.bank=7;
+	can_filter_config.mode=0;
+	can_filter_config.filterId |= (0x0080 < 16);
+	can_filter_config.filterId |= 0x0080;
+	can_filter_config.filterMask |= (0x0080 << 16);
+	can_filter_config.filterMask |= 0x0080;
+}
 
 int setGyroScale(){
 	struct sensor_ctrl_format_t msg;
@@ -162,9 +176,9 @@ bool printACCdata(){
 		std::cout<<"\tXX ="<<(tempmsg[0])<<" YY ="<<(tempmsg[1])\
 		<<" ZZ ="<<(tempmsg[2])<<std::endl;
 
-		imu.linear_acceleration.x=mapACC(tempmsg[0]);
-		imu.linear_acceleration.y=mapACC(tempmsg[1]);
-		imu.linear_acceleration.z=mapACC(tempmsg[2]);
+		imu.linear_acceleration.x=mapACC(tempmsg[0])-acc_offset::along_x;
+		imu.linear_acceleration.y=mapACC(tempmsg[1])-acc_offset::along_y;
+		imu.linear_acceleration.z=mapACC(tempmsg[2])-acc_offset::along_z;
 		return true;
 	}
 	else{
@@ -207,7 +221,7 @@ int main(int argc, char *argv[])
 
 	if(signal(SIGINT, sig_handler) == SIG_ERR)
 		fprintf(stderr, "fail to catch SIGINT\n");
-	
+	can_filter_mask_apply();
 	static char* _port=(char*)port_name.c_str();
 #ifdef FARO_CAN_SDK_DEBUG
 	try_Assert(do_scan_port(),"do_scan_port fail\n");
@@ -220,7 +234,6 @@ int main(int argc, char *argv[])
 	try_Assert(can_config(),"CAN config failed\n");
 	try_Assert(setACCScale(),"failed setting ACCScale\n");
 	try_Assert(setGyroScale(),"failed setting GyroScale\n");
-	
 
 #ifdef FARO_CAN_SDK_DEBUG
 	ros::Rate loop_rate(100);

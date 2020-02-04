@@ -1,3 +1,2 @@
-#include<iostream>
-#include<string>
-std::string str;
+#include <array>
+std::array marr;

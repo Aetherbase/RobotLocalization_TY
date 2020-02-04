@@ -184,8 +184,9 @@ static int process_options(int argc, char *argv[])
 
 		case 'd':
 			deinit_in_seconds = atoi(optarg);
-			if(FARO_CAN_SDK_DEBUG == 1)
+			#ifdef FARO_CAN_SDK_DEBUG
 				fprintf(stdout, "deinit after %d seconds\n", deinit_in_seconds);
+			#endif
 			break;
 
 		case 'g':
@@ -214,8 +215,9 @@ static int process_options(int argc, char *argv[])
 						break;
 					}
 
-					if(FARO_CAN_SDK_DEBUG == 1)
+					#ifdef FARO_CAN_SDK_DEBUG
 						fprintf(stdout, "argv[%d] = %s\n", index, argv[index]);
+					#endif
 
 					tmp = 0;
 
@@ -407,8 +409,9 @@ x_err:
 				display_help(argc, argv);
 
 x_ok:
-				if(FARO_CAN_SDK_DEBUG == 1)
+				#ifdef FARO_CAN_SDK_DEBUG
 					fprintf(stdout, "checking -x arguments done\n");
+				#endif
 			}
 			break;
 
@@ -504,8 +507,9 @@ static void *do_get_can_fw_ver(void *args)
 	int i;
 	struct can_fw_ver_t can_fw_ver;
 
-	if(FARO_CAN_SDK_DEBUG == 1)
+	#ifdef FARO_CAN_SDK_DEBUG
 		fprintf(stdout, "starting get firmware version on %s\n", port_name);
+	#endif
 
 	if(port_name == NULL) {
 		fprintf(stderr, "invalid port_name, assigned by -p /dev/ttyUSBx\n");
@@ -539,8 +543,9 @@ static void *do_mode_active(void *args)
 	int ret = 0;
 	int i;
 
-	if(FARO_CAN_SDK_DEBUG == 1)
+	#ifdef FARO_CAN_SDK_DEBUG
 		fprintf(stdout, "starting do_mode_active on %s\n", port_name);
+	#endif
 
 	if(port_name == NULL) {
 		fprintf(stderr, "invalid port_name, assigned by -p /dev/ttyUSBx\n");
@@ -584,8 +589,9 @@ static void *do_launch_receiver(void *args)
 	int ret = 0;
 	int i;
 
-	if(FARO_CAN_SDK_DEBUG == 1)
+	#ifdef FARO_CAN_SDK_DEBUG
 		fprintf(stdout, "starting do_launch_receiver on %s\n", port_name);
+	#endif
 
 	if(port_name == NULL) {
 		fprintf(stderr, "invalid port_name, assigned by -p /dev/ttyUSBx\n");
@@ -669,8 +675,9 @@ static void *do_sensor_test(void *args)
 {
 	int ret = 0;
 
-	if(FARO_CAN_SDK_DEBUG == 1)
+	#ifdef FARO_CAN_SDK_DEBUG
 		fprintf(stdout, "starting do_sensor_test on %s\n", port_name);
+	#endif
 
 	if(port_name == NULL) {
 		fprintf(stderr, "invalid port_name, assigned by -p /dev/ttyUSBx\n");
@@ -1049,8 +1056,9 @@ static int do_functions(void)
 	}
 
 	// spawn deinit_wait_thread if necessary
-	if(FARO_CAN_SDK_DEBUG == 1)
+	#ifdef FARO_CAN_SDK_DEBUG
 		fprintf(stdout, "spawning deinit_wait thread...\n");
+	#endif
 
 	if((ret = pthread_create(&deinit_wait_thread, NULL, deinit_wait, NULL)) != 0) {
 		fprintf(stderr, "create deinit_wait thread fail\n");
@@ -1058,8 +1066,9 @@ static int do_functions(void)
 	}
 
 	if(get_can_fw_ver) {
-		if(FARO_CAN_SDK_DEBUG == 1)
+		#ifdef FARO_CAN_SDK_DEBUG
 			fprintf(stdout, "spawning do_get_can_fw_ver thread...\n");
+		#endif
 
 		if((ret = pthread_create(&do_get_can_fw_ver_thread, NULL, do_get_can_fw_ver, NULL)) != 0) {
 			fprintf(stderr, "create do_get_can_fw_ver thread fail\n");
@@ -1076,8 +1085,9 @@ static int do_functions(void)
 	}
 
 	if(mode_active) {
-		if(FARO_CAN_SDK_DEBUG == 1)
+		#ifdef FARO_CAN_SDK_DEBUG
 			fprintf(stdout, "spawning do_mode_active thread...\n");
+		#endif
 
 		if((ret = pthread_create(&do_mode_active_thread, NULL, do_mode_active, NULL)) != 0) {
 			fprintf(stderr, "create do_mode_active thread fail\n");
@@ -1094,8 +1104,9 @@ static int do_functions(void)
 	}
 
 	if(launch_receiver) {
-		if(FARO_CAN_SDK_DEBUG == 1)
+		#ifdef FARO_CAN_SDK_DEBUG
 			fprintf(stdout, "spawning do_launch_receiver thread...\n");
+		#endif
 
 		if((ret = pthread_create(&do_launch_receiver_thread, NULL, do_launch_receiver, NULL)) != 0) {
 			fprintf(stderr, "create do_launch_receiver thread fail\n");
@@ -1112,8 +1123,9 @@ static int do_functions(void)
 	}
 
 	if(sensor_test) {
-		if(FARO_CAN_SDK_DEBUG == 1)
+		#ifdef FARO_CAN_SDK_DEBUG
 			fprintf(stdout, "spawn do_sensor_test thread...\n");
+		#endif
 
 		if((ret = pthread_create(&do_sensor_test_thread, NULL, do_sensor_test, NULL)) != 0) {
 			fprintf(stderr, "create do_sensor_test thread fail\n");

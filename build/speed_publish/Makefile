@@ -56,29 +56,6 @@ CMAKE_BINARY_DIR = /root/ws/tyros_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -103,6 +80,18 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -112,6 +101,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -124,16 +124,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,6 +168,51 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_eus: speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_nodejs: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_nodejs/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
 speed_publish/CMakeFiles/speed_publish.dir/rule:
 	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/speed_publish.dir/rule
 .PHONY : speed_publish/CMakeFiles/speed_publish.dir/rule
@@ -181,6 +226,186 @@ speed_publish: speed_publish/CMakeFiles/speed_publish.dir/rule
 speed_publish/fast:
 	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/speed_publish.dir/build.make speed_publish/CMakeFiles/speed_publish.dir/build
 .PHONY : speed_publish/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_eus: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_eus/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_nodejs: speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+.PHONY : roscpp_generate_messages_nodejs
+
+# fast build rule for target.
+roscpp_generate_messages_nodejs/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	cd /root/ws/tyros_ws/build && $(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
 
 lib/src/common.o: lib/src/common.c.o
 
@@ -269,14 +494,29 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... test"
-	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... speed_publish"
 	@echo "... install"
+	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... edit_cache"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_eus"
 	@echo "... rebuild_cache"
+	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... edit_cache"
+	@echo "... speed_publish"
+	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... test"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... roscpp_generate_messages_eus"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... lib/src/common.o"
 	@echo "... lib/src/common.i"
 	@echo "... lib/src/common.s"

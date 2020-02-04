@@ -54,17 +54,17 @@ CMAKE_BINARY_DIR = /root/ws/tyros_ws/build
 
 # The main recursive "all" target.
 all: serial/all
-all: faro_can_sdk/all
 all: speed_publish/all
 all: gps_map_frame/all
+all: imuread/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: serial/preinstall
-preinstall: faro_can_sdk/preinstall
 preinstall: speed_publish/preinstall
 preinstall: gps_map_frame/preinstall
+preinstall: imuread/preinstall
 
 .PHONY : preinstall
 
@@ -75,46 +75,11 @@ clean: CMakeFiles/run_tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: CMakeFiles/tests.dir/clean
 clean: serial/clean
-clean: faro_can_sdk/clean
 clean: speed_publish/clean
 clean: gps_map_frame/clean
+clean: imuread/clean
 
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory faro_can_sdk
-
-# Recursive "all" directory target.
-faro_can_sdk/all: faro_can_sdk/CMakeFiles/demosensor_test.dir/all
-faro_can_sdk/all: faro_can_sdk/CMakeFiles/publish_imu.dir/all
-
-.PHONY : faro_can_sdk/all
-
-# Recursive "preinstall" directory target.
-faro_can_sdk/preinstall:
-
-.PHONY : faro_can_sdk/preinstall
-
-# Recursive "clean" directory target.
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/demosensor_test.dir/clean
-faro_can_sdk/clean: faro_can_sdk/CMakeFiles/publish_imu.dir/clean
-
-.PHONY : faro_can_sdk/clean
 
 #=============================================================================
 # Directory level rules for directory gps_map_frame
@@ -143,6 +108,26 @@ gps_map_frame/clean: gps_map_frame/CMakeFiles/sensor_msgs_generate_messages_lisp
 gps_map_frame/clean: gps_map_frame/CMakeFiles/speedWrite.dir/clean
 
 .PHONY : gps_map_frame/clean
+
+#=============================================================================
+# Directory level rules for directory imuread
+
+# Recursive "all" directory target.
+imuread/all: imuread/CMakeFiles/demosensor.dir/all
+imuread/all: imuread/CMakeFiles/imu-publish.dir/all
+
+.PHONY : imuread/all
+
+# Recursive "preinstall" directory target.
+imuread/preinstall:
+
+.PHONY : imuread/preinstall
+
+# Recursive "clean" directory target.
+imuread/clean: imuread/CMakeFiles/demosensor.dir/clean
+imuread/clean: imuread/CMakeFiles/imu-publish.dir/clean
+
+.PHONY : imuread/clean
 
 #=============================================================================
 # Directory level rules for directory serial
@@ -209,7 +194,22 @@ speed_publish/preinstall:
 .PHONY : speed_publish/preinstall
 
 # Recursive "clean" directory target.
+speed_publish/clean: speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 speed_publish/clean: speed_publish/CMakeFiles/speed_publish.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+speed_publish/clean: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 .PHONY : speed_publish/clean
 
@@ -543,9 +543,9 @@ serial/tests/CMakeFiles/_run_tests_serial_gtest.dir/clean:
 # Target rules for target serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir
 
 # All Build rule for target.
-serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/all: CMakeFiles/tests.dir/all
 serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/all: serial/tests/CMakeFiles/clean_test_results_serial.dir/all
 serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/all: serial/tests/CMakeFiles/serial-test-timer.dir/all
+serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/all: CMakeFiles/tests.dir/all
 	$(MAKE) -f serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/build.make serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/depend
 	$(MAKE) -f serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/build.make serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test-timer.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target _run_tests_serial_gtest_serial-test-timer"
@@ -599,9 +599,9 @@ serial/tests/CMakeFiles/run_tests_serial.dir/clean:
 # Target rules for target serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir
 
 # All Build rule for target.
-serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/all: CMakeFiles/tests.dir/all
 serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/all: serial/tests/CMakeFiles/serial-test.dir/all
 serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/all: serial/tests/CMakeFiles/clean_test_results_serial.dir/all
+serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/all: CMakeFiles/tests.dir/all
 	$(MAKE) -f serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/build.make serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/depend
 	$(MAKE) -f serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/build.make serial/tests/CMakeFiles/_run_tests_serial_gtest_serial-test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target _run_tests_serial_gtest_serial-test"
@@ -734,463 +734,85 @@ serial/tests/CMakeFiles/run_tests_serial_gtest_serial-test-timer.dir/clean:
 .PHONY : serial/tests/CMakeFiles/run_tests_serial_gtest_serial-test-timer.dir/clean
 
 #=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir
+# Target rules for target speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_py.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# clean rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-
-#=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+std_msgs_generate_messages_lisp: speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 .PHONY : std_msgs_generate_messages_lisp
 
 # clean rule for target.
-faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/demosensor_test.dir
+# Target rules for target speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-faro_can_sdk/CMakeFiles/demosensor_test.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/demosensor_test.dir/build.make faro_can_sdk/CMakeFiles/demosensor_test.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/demosensor_test.dir/build.make faro_can_sdk/CMakeFiles/demosensor_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=1,2 "Built target demosensor_test"
-.PHONY : faro_can_sdk/CMakeFiles/demosensor_test.dir/all
+speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/demosensor_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/demosensor_test.dir/all
+speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/demosensor_test.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-demosensor_test: faro_can_sdk/CMakeFiles/demosensor_test.dir/rule
+std_msgs_generate_messages_eus: speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
-.PHONY : demosensor_test
+.PHONY : std_msgs_generate_messages_eus
 
 # clean rule for target.
-faro_can_sdk/CMakeFiles/demosensor_test.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/demosensor_test.dir/build.make faro_can_sdk/CMakeFiles/demosensor_test.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/demosensor_test.dir/clean
+speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target faro_can_sdk/CMakeFiles/publish_imu.dir
+# Target rules for target speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
-faro_can_sdk/CMakeFiles/publish_imu.dir/all:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/publish_imu.dir/build.make faro_can_sdk/CMakeFiles/publish_imu.dir/depend
-	$(MAKE) -f faro_can_sdk/CMakeFiles/publish_imu.dir/build.make faro_can_sdk/CMakeFiles/publish_imu.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=3,4 "Built target publish_imu"
-.PHONY : faro_can_sdk/CMakeFiles/publish_imu.dir/all
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-faro_can_sdk/CMakeFiles/publish_imu.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 faro_can_sdk/CMakeFiles/publish_imu.dir/all
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
-.PHONY : faro_can_sdk/CMakeFiles/publish_imu.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-publish_imu: faro_can_sdk/CMakeFiles/publish_imu.dir/rule
+rosgraph_msgs_generate_messages_nodejs: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : publish_imu
+.PHONY : rosgraph_msgs_generate_messages_nodejs
 
 # clean rule for target.
-faro_can_sdk/CMakeFiles/publish_imu.dir/clean:
-	$(MAKE) -f faro_can_sdk/CMakeFiles/publish_imu.dir/build.make faro_can_sdk/CMakeFiles/publish_imu.dir/clean
-.PHONY : faro_can_sdk/CMakeFiles/publish_imu.dir/clean
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
 # Target rules for target speed_publish/CMakeFiles/speed_publish.dir
@@ -1218,6 +840,330 @@ speed_publish: speed_publish/CMakeFiles/speed_publish.dir/rule
 speed_publish/CMakeFiles/speed_publish.dir/clean:
 	$(MAKE) -f speed_publish/CMakeFiles/speed_publish.dir/build.make speed_publish/CMakeFiles/speed_publish.dir/clean
 .PHONY : speed_publish/CMakeFiles/speed_publish.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_eus: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# clean rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/roscpp_generate_messages_py.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# clean rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_py.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# clean rule for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# clean rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# clean rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# clean rule for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_nodejs: speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+.PHONY : roscpp_generate_messages_nodejs
+
+# clean rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# clean rule for target.
+speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/build.make speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+.PHONY : speed_publish/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# clean rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# clean rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# clean rule for target.
+speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : speed_publish/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+
+#=============================================================================
+# Target rules for target speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# clean rule for target.
+speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : speed_publish/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
 # Target rules for target gps_map_frame/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir
@@ -1515,6 +1461,60 @@ speedWrite: gps_map_frame/CMakeFiles/speedWrite.dir/rule
 gps_map_frame/CMakeFiles/speedWrite.dir/clean:
 	$(MAKE) -f gps_map_frame/CMakeFiles/speedWrite.dir/build.make gps_map_frame/CMakeFiles/speedWrite.dir/clean
 .PHONY : gps_map_frame/CMakeFiles/speedWrite.dir/clean
+
+#=============================================================================
+# Target rules for target imuread/CMakeFiles/demosensor.dir
+
+# All Build rule for target.
+imuread/CMakeFiles/demosensor.dir/all:
+	$(MAKE) -f imuread/CMakeFiles/demosensor.dir/build.make imuread/CMakeFiles/demosensor.dir/depend
+	$(MAKE) -f imuread/CMakeFiles/demosensor.dir/build.make imuread/CMakeFiles/demosensor.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=1,2 "Built target demosensor"
+.PHONY : imuread/CMakeFiles/demosensor.dir/all
+
+# Build rule for subdir invocation for target.
+imuread/CMakeFiles/demosensor.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 imuread/CMakeFiles/demosensor.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : imuread/CMakeFiles/demosensor.dir/rule
+
+# Convenience name for target.
+demosensor: imuread/CMakeFiles/demosensor.dir/rule
+
+.PHONY : demosensor
+
+# clean rule for target.
+imuread/CMakeFiles/demosensor.dir/clean:
+	$(MAKE) -f imuread/CMakeFiles/demosensor.dir/build.make imuread/CMakeFiles/demosensor.dir/clean
+.PHONY : imuread/CMakeFiles/demosensor.dir/clean
+
+#=============================================================================
+# Target rules for target imuread/CMakeFiles/imu-publish.dir
+
+# All Build rule for target.
+imuread/CMakeFiles/imu-publish.dir/all:
+	$(MAKE) -f imuread/CMakeFiles/imu-publish.dir/build.make imuread/CMakeFiles/imu-publish.dir/depend
+	$(MAKE) -f imuread/CMakeFiles/imu-publish.dir/build.make imuread/CMakeFiles/imu-publish.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/ws/tyros_ws/build/CMakeFiles --progress-num=3,4 "Built target imu-publish"
+.PHONY : imuread/CMakeFiles/imu-publish.dir/all
+
+# Build rule for subdir invocation for target.
+imuread/CMakeFiles/imu-publish.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 imuread/CMakeFiles/imu-publish.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ws/tyros_ws/build/CMakeFiles 0
+.PHONY : imuread/CMakeFiles/imu-publish.dir/rule
+
+# Convenience name for target.
+imu-publish: imuread/CMakeFiles/imu-publish.dir/rule
+
+.PHONY : imu-publish
+
+# clean rule for target.
+imuread/CMakeFiles/imu-publish.dir/clean:
+	$(MAKE) -f imuread/CMakeFiles/imu-publish.dir/build.make imuread/CMakeFiles/imu-publish.dir/clean
+.PHONY : imuread/CMakeFiles/imu-publish.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
