@@ -17,7 +17,6 @@ std::string port_name;
 static int stop_thread = 0;
 sensor_msgs::Imu imu;
 std_msgs::Int32 speed; 
-struct can_filter_config_t can_filter_config;
 
 #define fprintf(fmt,...) {if (!g_quiet_print_flag) printf(__VA_ARGS__);}
 
@@ -95,7 +94,8 @@ int calibGyro(){
 	msg.ctrl7=0x00;
 	return AZ_VC_Sensor_Write(msg);
 }
-void can_filter_mask_apply(){
+int can_filter_mask_apply(){
+	struct can_filter_config_t can_filter_config;
 	can_filter_config.type = 0;
 	can_filter_config.port =0;
 	can_filter_config.bank=7;
@@ -104,6 +104,7 @@ void can_filter_mask_apply(){
 	can_filter_config.filterId |= 0x0080;
 	can_filter_config.filterMask |= (0x0080 << 16);
 	can_filter_config.filterMask |= 0x0080;
+	return(AZ_VC_CAN_Filter_Config(can_filter_config));
 }
 
 int setGyroScale(){
@@ -221,7 +222,7 @@ int main(int argc, char *argv[])
 
 	if(signal(SIGINT, sig_handler) == SIG_ERR)
 		fprintf(stderr, "fail to catch SIGINT\n");
-	can_filter_mask_apply();
+
 	static char* _port=(char*)port_name.c_str();
 #ifdef FARO_CAN_SDK_DEBUG
 	try_Assert(do_scan_port(),"do_scan_port fail\n");
@@ -232,6 +233,7 @@ int main(int argc, char *argv[])
 	try_Assert(calibAcc(),"failed to Calibrate Acc\n");
 	try_Assert(calibGyro(),"failed to Calibrate Gyro\n");
 	try_Assert(can_config(),"CAN config failed\n");
+	try_Assert(can_filter_mask_apply(),"CAN filter config failed\n");
 	try_Assert(setACCScale(),"failed setting ACCScale\n");
 	try_Assert(setGyroScale(),"failed setting GyroScale\n");
 
