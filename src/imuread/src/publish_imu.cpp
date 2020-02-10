@@ -6,9 +6,9 @@
 extern "C" { 
 #include "faro_can_sdk.h" 
 }
-namespace acc_offset { const int16_t along_x=0;
-		const int16_t along_y=0;
-		const int16_t along_z=0;
+namespace acc_offset { const float along_x=0;
+		const float along_y=0;
+		const float along_z=0;
 };
 const char* ROSTOPIC_FOR_PUBLISHER="IMU_topic";
 const char* ROSTOPIC_SPEED_PUBLISHER="/ezypilot/canspeed";
